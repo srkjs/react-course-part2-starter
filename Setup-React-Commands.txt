@@ -1,0 +1,19 @@
+Ref - https://stackoverflow.com/questions/47137086/starting-react-app-from-pulled-github-project
+
+1. git clone {repo-url}
+
+2. cd {local repo}
+
+3. Check package.json and ensure scripts are present like below:
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+}
+
+4. Delete the node_modules folder and any 'lock' files such as yarn.lock or package-lock.json if present
+
+5. npm install
+
+6. npm run dev
