@@ -10,17 +10,17 @@ import './index.css';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 3, // Retries 3 times if query doesn't respond back / fails.
-      cacheTime: 300_000, //300,000 milliseconds -> 5mins - If no component uses this query for 5mins, then garbage collector removes it.
+      // retry: 3, // Retries 3 times if query doesn't respond back / fails.
+      // cacheTime: 300_000, //300,000 milliseconds -> 5mins - If no component uses this query for 5mins, then garbage collector removes it.
       // staleTime specifies how long data is considered fresh
-      staleTime: 10 * 1000, // 10 seconds
+      // staleTime: 10 * 1000, // 10 seconds: ONLY SETTING THAT MIGHT NEED TO OVERRIDE DEFAULT SETTING OFTEN
       // React Query automatically refreshes stale data under 3 situations
       //    1. When network is reconnected - refetchOnReconnect
       //    2. When a component is mounted - refetchOnMount
       //    3. When a window is refocused - refetchOnWindowFocus
-      refetchOnWindowFocus: false, // Disabling refetch on window focus
-      refetchOnReconnect: false,
-      refetchOnMount: false,
+      // refetchOnWindowFocus: false, // Disabling refetch on window focus
+      // refetchOnReconnect: false,
+      // refetchOnMount: false,
     },
   },
 });
