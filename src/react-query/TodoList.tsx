@@ -1,41 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import useTodos from '../hooks/useTodos';
 
-interface Todo {
-  id: number;
-  title: string;
-  userId: number;
-  completed: boolean;
-}
-
+// Now
+// Separation of concerns is adhered.
+// Our querying logic (moved to useTodos.tsx) is separated from Component
+// and our TodoList component is concerned with single responsibility and is concerned only with markup
 const TodoList = () => {
-  const fetchTodos = () => {
-    return axios
-      .get<Todo[]>('https://jsonplaceholder.typicode.com/todos')
-      .then((response) => response.data);
-  };
-
-  // Benefits with ReactQuery
-  // 1. Automatic retries (Default: 2 times)
-  // 2. Automatic refetch (Auto refresh after sometime)
-  // 3. Caching - Store data into cache and refresh after certain period of time
-
-  // Axios module returns errors of type 'Error' - which is commonly used across browsers
-  const {
-    data: todoData,
-    error,
-    isLoading,
-  } = useQuery<Todo[], Error>({
-    // Unique Identifier for the query, used internally for caching. Data stored in cache will be accessible via this key
-    queryKey: ['todos'],
-    // queryFn: Function that we use to fetch data from backend
-    // queryFn: () => {
-    //   axios
-    //     .get('https://jsonplaceholder.typicode.com/todos') // Returns a response Object, but we only need to store the response data to cache
-    //     .then((response) => response.data);
-    // },
-    queryFn: fetchTodos,
-  });
+  const { data: todoData, error, isLoading } = useTodos();
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error?.message}</p>;
