@@ -1,0 +1,3 @@
+Setting up React Query - 
+npm install @tanstack/react-query@4.28
+
