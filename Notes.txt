@@ -1,3 +1,5 @@
 Setting up React Query - 
 npm install @tanstack/react-query@4.28
 
+Install React Query Dev tools -
+npm install @tanstack/react-query-devtools@4.28
