@@ -11,7 +11,7 @@ interface Todo {
 const TodoList = () => {
   const fetchTodos = () => {
     return axios
-      .get<Todo[]>('https://jsonplaceholder.typicode.com/todosx')
+      .get<Todo[]>('https://jsonplaceholder.typicode.com/todos')
       .then((response) => response.data);
   };
 
@@ -21,7 +21,11 @@ const TodoList = () => {
   // 3. Caching - Store data into cache and refresh after certain period of time
 
   // Axios module returns errors of type 'Error' - which is commonly used across browsers
-  const { data: todoData, error } = useQuery<Todo[], Error>({
+  const {
+    data: todoData,
+    error,
+    isLoading,
+  } = useQuery<Todo[], Error>({
     // Unique Identifier for the query, used internally for caching. Data stored in cache will be accessible via this key
     queryKey: ['todos'],
     // queryFn: Function that we use to fetch data from backend
@@ -33,6 +37,7 @@ const TodoList = () => {
     queryFn: fetchTodos,
   });
 
+  if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error?.message}</p>;
 
   return (
