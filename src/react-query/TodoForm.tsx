@@ -11,7 +11,7 @@ const TodoForm = () => {
   const addTodo = useMutation<Todo, Error, Todo>({
     mutationFn: (todo: Todo) =>
       axios
-        .post<Todo>('https://xjsonplaceholder.typicode.com/todos', todo)
+        .post<Todo>('https://jsonplaceholder.typicode.com/todos', todo)
         .then((res) => res.data),
     // Call back functions
     onSuccess: (savedTodo, newTodo) => {
@@ -26,6 +26,7 @@ const TodoForm = () => {
         savedTodo,
         ...(todos || []),
       ]);
+      if (ref.current) ref.current.value = '';
       console.log(savedTodo);
     }, // called only when success
     //onError: (), // called only when error
@@ -53,7 +54,9 @@ const TodoForm = () => {
           <input ref={ref} type='text' className='form-control' />
         </div>
         <div className='col'>
-          <button className='btn btn-primary'>Add</button>
+          <button className='btn btn-primary' disabled={addTodo.isLoading}>
+            {addTodo.isLoading ? 'Adding...' : 'Add'}
+          </button>
         </div>
       </form>
     </>
