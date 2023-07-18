@@ -3,34 +3,44 @@ import { useRef } from 'react';
 import { Todo } from '../hooks/useTodos';
 import axios from 'axios';
 
+interface AddTodoContext {
+  previousTodos: Todo[];
+}
+
 const TodoForm = () => {
   // useQueryClient() - Used to access QueryClientProvider from main.tsx
   const queryClient = useQueryClient();
 
   const ref = useRef<HTMLInputElement>(null);
-  const addTodo = useMutation<Todo, Error, Todo>({
+  const addTodo = useMutation<Todo, Error, Todo, AddTodoContext>({
     mutationFn: (todo: Todo) =>
       axios
-        .post<Todo>('https://jsonplaceholder.typicode.com/todos', todo)
+        .post<Todo>('https://xjsonplaceholder.typicode.com/todos', todo)
         .then((res) => res.data),
-    // Call back functions
-    onSuccess: (savedTodo, newTodo) => {
-      // Two approaches to update the list
-      // 1. Invalidating the cache - Tell React Query, cache is invalid and fetch all data from backend
-      // queryClient.invalidateQueries({
-      //   queryKey: ['todos'],
-      // });
-
-      // 2. Update Cache data directly
+    // onMutate is called before mutation is executed
+    // i.e. Todo list gets updated before the data is sent to backend to improve user experience
+    // And once backend call is successful, data is refreshed
+    onMutate: (newTodo) => {
+      const previousTodos = queryClient.getQueryData<Todo[]>(['todos']) || [];
       queryClient.setQueryData<Todo[]>(['todos'], (todos) => [
-        savedTodo,
+        newTodo,
         ...(todos || []),
       ]);
       if (ref.current) ref.current.value = '';
-      console.log(savedTodo);
-    }, // called only when success
-    //onError: (), // called only when error
-    //onSettled: () // called in spite of success/failure
+      return { previousTodos };
+    },
+    onSuccess: (savedTodo, newTodo) => {
+      // Update the todo list once backend call is finished
+      queryClient.setQueryData<Todo[]>(['todos'], (todos) => {
+        return todos?.map((todo) => (todo === newTodo ? savedTodo : todo));
+      });
+    },
+    // Param: context -> Previous state of data before updation
+    onError: (error, newTodo, context) => {
+      if (!context) return;
+
+      queryClient.setQueryData<Todo[]>(['todos'], context.previousTodos);
+    },
   });
   return (
     <>
