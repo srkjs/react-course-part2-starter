@@ -21,4 +21,21 @@ Reducer -> A function that allows us to centralize state updates in a Components
     - All the state management logic can be taken outside of the component and centralize it in a single reducer function
 
 
+Sharing State using React Context ->
+    If we have to share a state between two Components - say Navbar and TaskList,
 
+            App
+    Homepage    NavBar
+    TaskList
+    
+    Then we have to lift the state to App component and pass it as props to Homepage, Navbar and TaskList Components
+
+    Prop Drill -> to pass the state to TaskList, we need to pass the prop through Homepage which does not use this state
+
+    React Context -> Allows sharing data without passing it down thorough many components in the middle.
+    So code will be cleaner and maintainable.
+
+    Steps: 
+        1. Lift the state up to the closest parent
+        2. Create Context (like a Truck for transporting data) and Provide context to components
+        3. Access contexts using useContext
