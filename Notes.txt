@@ -3,3 +3,15 @@ npm install @tanstack/react-query@4.28
 
 Install React Query Dev tools -
 npm install @tanstack/react-query-devtools@4.28
+
+
+Understanding the Application Layers -
+TOP |
+    Components -> TodoForm, TodoList
+    Custom Hooks -> useTodos, useAddTodo -> Hooks use HTTP services to fetch and update data. This has all logic to manage data in cache
+    HTTP Services -> todoService -> Instances of APIClient dedicated to working with specific types of objects. For example, we have todoService for working with todos and postService for working with posts
+    API CLIENT -> APIClient -> Handles sending HTTP requests to backend
+Bottom |
+
+Each layer in this Application has a single responsibility resulting in clean and well organized architecture
+Managing, maintaining code becomes easy. We can now also reuse code.
