@@ -15,3 +15,10 @@ Bottom |
 
 Each layer in this Application has a single responsibility resulting in clean and well organized architecture
 Managing, maintaining code becomes easy. We can now also reuse code.
+
+
+Reducer -> A function that allows us to centralize state updates in a Components
+    - All the state management logic can be taken outside of the component and centralize it in a single reducer function
+
+
+
