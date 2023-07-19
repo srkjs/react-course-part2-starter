@@ -14,3 +14,5 @@ const authReducer = (state: string, action: AuthAction): string => {
   if (action.type === 'LOGOUT') return '';
   return state;
 };
+
+export default authReducer;

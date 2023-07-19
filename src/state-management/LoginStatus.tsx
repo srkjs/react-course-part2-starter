@@ -1,4 +1,5 @@
 import { useReducer, useState } from 'react';
+import authReducer from './reducers/authReducer';
 
 const LoginStatus = () => {
   const [user, dispatch] = useReducer(authReducer, '');
