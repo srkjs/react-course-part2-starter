@@ -9,19 +9,18 @@ import AuthContext from './state-management/contexts/authContext';
 import LoginPage from './routing/LoginPage';
 import LoginStatus from './state-management/LoginStatus';
 import HomePage from './state-management/HomePage';
+import AuthProvider from './state-management/AuthProvider';
 
 function App() {
   const [tasks, tasksDispatch] = useReducer(tasksReducer, []);
-  const [user, authDispatch] = useReducer(authReducer, '');
 
   return (
     <>
-      <AuthContext.Provider value={{ user, authDispatch }}>
-        <TasksContext.Provider value={{ tasks, tasksDispatch }}>
-          <LoginStatus />
-          <HomePage />
-        </TasksContext.Provider>
-      </AuthContext.Provider>
+      <AuthProvider children={undefined}></AuthProvider>
+      <TasksContext.Provider value={{ tasks, tasksDispatch }}>
+        <LoginStatus />
+        <HomePage />
+      </TasksContext.Provider>
     </>
   );
 }
