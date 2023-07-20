@@ -65,3 +65,5 @@ npm i simple-zustand-devtools@1.1.0
 
 Add node as type as a development dependency
 npm i -D @types/node
+
+npm i react-router-dom@6.10.0
