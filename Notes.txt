@@ -45,4 +45,14 @@ React Context -
     NOTE: A context should only hold values that are closely related and tend to change together.
           A context should only have a single responsibility/purpose.
 
-    Minimizing renders - Split up a context into smaller and focused ones, each having a single responsibility 
+    Minimizing renders - Split up a context into smaller and focused ones, each having a single responsibility  
+
+
+When to use Context - 
+    React app has some state/data that needs to be shared between components
+    This can be 
+        Server state -> Data we fetch from backend (Avoid using react contexts for this -> Use ReactQuery)
+        Client (UI) state -> Represents the state of the client/UI (Use Local state + React Context)
+                                                                   ( useState() -[For simple state management] or useReducer() -[For complex state management logic])
+    State management libraries - [Used when splitting up context doesn't make sense & we deal with unnecessary re-renders]
+        Eg: Redux, Zustland, MobX, Recoil, xState
