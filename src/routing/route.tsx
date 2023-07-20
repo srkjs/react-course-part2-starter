@@ -7,6 +7,7 @@ import Layout from './Layout';
 import UsersPage from './UsersPage';
 import ErrorPage from './ErrorPage';
 import LoginPage from './LoginPage';
+import PrivateRoutes from './PrivateRoutes';
 {
   /* <BrowserRouter /> */
 }
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
       // { path: '', element: <HomePage /> },
       { index: true, element: <HomePage /> },
       { path: '/login', element: <LoginPage /> },
+    ],
+  },
+  {
+    element: <PrivateRoutes />,
+    children: [
       {
         path: 'users',
         element: <UsersPage />,
