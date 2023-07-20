@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import TasksContext from './tasksContext';
-import AuthContext from '../auth/authContext';
+import useAuthStore from '../auth/store';
 
 const useTasks = () => {
   return useContext(TasksContext);
@@ -8,7 +8,7 @@ const useTasks = () => {
 
 const TaskList = () => {
   const { tasks, dispatch } = useTasks();
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthStore();
   return (
     <>
       <p>User: {user}</p>

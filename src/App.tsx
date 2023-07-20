@@ -3,25 +3,21 @@ import './App.css';
 import NavBar from './routing/NavBar';
 import TasksContext from './state-management/tasks/tasksContext';
 import TaskList from './state-management/tasks/TaskList';
-import AuthContext from './state-management/auth/authContext';
 import LoginPage from './routing/LoginPage';
 import LoginStatus from './state-management/auth/LoginStatus';
 import HomePage from './state-management/HomePage';
-import { AuthProvider } from './state-management/auth/index';
 import { TaskProvider } from './state-management/tasks/index';
 import Counter from './state-management/counter/Counter';
 
 function App() {
   return (
     <>
-      <AuthProvider>
-        <TaskProvider>
-          <Counter />
-          <NavBar />
-          <LoginStatus />
-          <HomePage />
-        </TaskProvider>
-      </AuthProvider>
+      <TaskProvider>
+        <Counter />
+        <NavBar />
+        <LoginStatus />
+        <HomePage />
+      </TaskProvider>
     </>
   );
 }
