@@ -59,3 +59,9 @@ When to use Context -
 
 
 npm i zustand@4.3.7
+
+https://github.com/beerose/simple-zustand-devtools
+npm i simple-zustand-devtools@1.1.0
+
+Add node as type as a development dependency
+npm i -D @types/node
