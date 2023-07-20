@@ -39,3 +39,10 @@ Sharing State using React Context ->
         1. Lift the state up to the closest parent
         2. Create Context (like a Truck for transporting data) and Provide context to components
         3. Access contexts using useContext
+
+React Context - 
+    Anytime a context changes, all the components using the context gets re-rendered
+    NOTE: A context should only hold values that are closely related and tend to change together.
+          A context should only have a single responsibility/purpose.
+
+    Minimizing renders - Split up a context into smaller and focused ones, each having a single responsibility 
