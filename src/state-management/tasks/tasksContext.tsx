@@ -1,7 +1,7 @@
 // React Context is like a bus for transporting boxes, inside which we have states
 
 import { Dispatch } from 'react';
-import { Task, TaskAction } from '../reducers/tasksReducer';
+import { Task, TaskAction } from './TaskProvider';
 import React from 'react';
 
 // Define shape of the box

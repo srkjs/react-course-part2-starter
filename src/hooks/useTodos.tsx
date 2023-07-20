@@ -4,7 +4,7 @@ import todoService, { Todo } from '../react-query/services/todoService';
 
 // Custom hook query
 const useTodos = () => {
-  return useQuery<Todo, Error>({
+  return useQuery<Todo, Error, Todo[]>({
     queryKey: CACHE_KEY_TODOS,
     queryFn: todoService.getAll, // Reference to this(apiClient Object is lost)
     // 1. bind the current apiClient Object while referencing the method
