@@ -1,10 +1,12 @@
-import { useContext } from 'react';
-import TasksContext from '../state-management/tasks/tasksContext';
 import useCounterStore from '../state-management/counter/store';
 
 const NavBar = () => {
-  const context = useContext(TasksContext);
-  const { counter, increment, reset } = useCounterStore();
+  // Re-render NavBar only if Counter property changes
+  // Now this NavBar property is only dependent on counter & not with reset functionality (max)
+  const counter = useCounterStore((s) => s.counter);
+
+  console.log('Render NavBar');
+
   return (
     <nav
       className='navbar navbar-expand-lg'
