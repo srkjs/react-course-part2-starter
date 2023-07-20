@@ -10,17 +10,19 @@ import LoginPage from './routing/LoginPage';
 import LoginStatus from './state-management/LoginStatus';
 import HomePage from './state-management/HomePage';
 import AuthProvider from './state-management/AuthProvider';
+import TaskProvider from './state-management/TaskProvider';
 
 function App() {
   const [tasks, tasksDispatch] = useReducer(tasksReducer, []);
 
   return (
     <>
-      <AuthProvider children={undefined}></AuthProvider>
-      <TasksContext.Provider value={{ tasks, tasksDispatch }}>
-        <LoginStatus />
-        <HomePage />
-      </TasksContext.Provider>
+      <AuthProvider>
+        <TaskProvider>
+          <LoginStatus />
+          <HomePage />
+        </TaskProvider>
+      </AuthProvider>
     </>
   );
 }
