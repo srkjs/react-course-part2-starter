@@ -7,7 +7,7 @@ import React from 'react';
 // Define shape of the box
 interface TasksContextType {
   tasks: Task[];
-  dispatch: Dispatch<TaskAction>;
+  tasksDispatch: Dispatch<TaskAction>;
 }
 
 // The default value we provide below is replaced with value field in <TaskContext.Provider> tag
