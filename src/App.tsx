@@ -9,12 +9,15 @@ import LoginStatus from './state-management/auth/LoginStatus';
 import HomePage from './state-management/HomePage';
 import { AuthProvider } from './state-management/auth/index';
 import { TaskProvider } from './state-management/tasks/index';
+import Counter from './state-management/counter/Counter';
 
 function App() {
   return (
     <>
       <AuthProvider>
         <TaskProvider>
+          <Counter />
+          <NavBar />
           <LoginStatus />
           <HomePage />
         </TaskProvider>

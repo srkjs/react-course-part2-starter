@@ -56,3 +56,6 @@ When to use Context -
                                                                    ( useState() -[For simple state management] or useReducer() -[For complex state management logic])
     State management libraries - [Used when splitting up context doesn't make sense & we deal with unnecessary re-renders]
         Eg: Redux, Zustland, MobX, Recoil, xState
+
+
+npm i zustand@4.3.7

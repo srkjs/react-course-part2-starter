@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import TasksContext from '../state-management/tasks/tasksContext';
+import useCounterStore from '../state-management/counter/store';
 
 const NavBar = () => {
   const context = useContext(TasksContext);
-
+  const { counter, increment, reset } = useCounterStore();
   return (
     <nav
       className='navbar navbar-expand-lg'
@@ -28,7 +29,7 @@ const NavBar = () => {
           </ul>
         </div>
       </div>
-      <span className='badge text-bg-secondary'>{context.tasks.length}</span>
+      <span className='badge text-bg-secondary'>{counter}</span>
     </nav>
   );
 };
